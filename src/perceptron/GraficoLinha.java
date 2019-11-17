@@ -1,48 +1,70 @@
 package perceptron;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.block.BlockBorder;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 /**
  *
- * @author marce
+ * @author marce link apoio http://zetcode.com/java/jfreechart/
  */
 public class GraficoLinha {
 
-    public DefaultCategoryDataset createDataSet(List<Reta> listReta){
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset(); 
-        int i=1;
-        String serie1= "Reta "+1;
- 
-        for(Reta r: listReta){
-            dataset.addValue(r.getX(), serie1, r.getY()+"");
-            dataset.addValue(r.getX2(), serie1, r.getY2()+"");
+    public XYSeriesCollection createDataSet(List<Reta> listReta) {
+        XYSeriesCollection dataset = new XYSeriesCollection();;
+        int i = 1;
+
+        for (Reta r : listReta) {
+            XYSeries serie3 = new XYSeries("Reta" + i);
+            serie3.add(r.getX(), r.getY());
+            serie3.add(r.getX2(), r.getY2());
+            dataset.addSeries(serie3);
             i++;
-            serie1= "Reta "+i;
         }
-        return dataset;  
+        return dataset;
     }
+
     //criar o grafico de barras
-    public JFreeChart createListChart(DefaultCategoryDataset dataSet){
-        JFreeChart chartLine = ChartFactory.createLineChart(  
-        "Lines Perceptron", // Chart title  
-        "Date", // X-Axis Label  
-        "Number of Visitor", // Y-Axis Label  
-        dataSet  
-        );     
-        return chartLine;
+    public JFreeChart createListChart(XYDataset dataSet) {
+        JFreeChart chart = ChartFactory.createXYLineChart(
+                "Lines Perceptron",
+                "",
+                "",
+                dataSet,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+
+        XYPlot plot = chart.getXYPlot();
+
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+
+        plot.setRenderer(renderer);
+        // plot.setBackgroundPaint(Color.white);
+
+        chart.getLegend().setFrame(BlockBorder.NONE);
+        return chart;
     }
-    
+
     //criar o grafico completo
-    public ChartPanel criarGrafico(List<Reta> list){
-        DefaultCategoryDataset dataSet = this.createDataSet(list); //dados do grafico
+    public ChartPanel criarGrafico(List<Reta> list) {
+        XYSeriesCollection dataSet = this.createDataSet(list); //dados do grafico
         JFreeChart grafico = this.createListChart(dataSet);
         ChartPanel painelDoGrafico = new ChartPanel(grafico); //configurações do grafico
-        painelDoGrafico.setPreferredSize(new Dimension(400,400)); //tamanho do grafico 
+        painelDoGrafico.setPreferredSize(new Dimension(400, 400)); //tamanho do grafico 
         return painelDoGrafico;
     }
-    
+
 }

@@ -17,47 +17,49 @@ import org.jfree.data.xy.XYSeriesCollection;
  * @author marce
  */
 public class GraficoPonto {
+
     //criar o dataset
-    public XYDataset createDataSet(List<Ponto> listPointClass1, List<Ponto> listPointClass2){
-        XYSeriesCollection dataset = new XYSeriesCollection();  
+    public XYDataset createDataSet(List<Ponto> listPointClass1, List<Ponto> listPointClass2) {
+        XYSeriesCollection dataset = new XYSeriesCollection();
 
         //Class 1 (X,Y) series  
-        XYSeries series1 = new XYSeries("Class 1");  
-        for(Ponto p: listPointClass1){
-            series1.add(p.getX(),p.getY());
+        XYSeries series1 = new XYSeries("Class 1");
+        for (Ponto p : listPointClass1) {
+            series1.add(p.getX(), p.getY());
         }
-        dataset.addSeries(series1);  
+        dataset.addSeries(series1);
 
-       //Class 2 (X,Y) series  
-        XYSeries series2 = new XYSeries("Class 2");  
-        for(Ponto p: listPointClass2){
-            series2.add(p.getX(),p.getY());
+        //Class 2 (X,Y) series  
+        XYSeries series2 = new XYSeries("Class 2");
+        for (Ponto p : listPointClass2) {
+            series2.add(p.getX(), p.getY());
         }
 
-        dataset.addSeries(series2);  
+        dataset.addSeries(series2);
 
-        return dataset;  
+        return dataset;
     }
+
     //criar o grafico de barras
-    public JFreeChart createListChartPonto(XYDataset dataSet){
-        
-        JFreeChart chartPoints = ChartFactory.createScatterPlot(  
-        "Perceptron Points",   
-        "X", "Y", dataSet); 
-        
+    public JFreeChart createListChartPonto(XYDataset dataSet) {
+
+        JFreeChart chartPoints = ChartFactory.createScatterPlot(
+                "Perceptron Points",
+                "X", "Y", dataSet);
+
         XYPlot plot = chartPoints.getXYPlot();
-        plot.setBackgroundPaint(Color.white);
-        
+        // plot.setBackgroundPaint(Color.white);
+
         return chartPoints;
     }
-    
+
     //criar o grafico completo
-    public ChartPanel criarGrafico(List<Ponto> listPointClass1, List<Ponto> listPointClass2){
+    public ChartPanel criarGrafico(List<Ponto> listPointClass1, List<Ponto> listPointClass2) {
         XYDataset dataSet = this.createDataSet(listPointClass1, listPointClass2); //dados do grafico
         JFreeChart grafico = this.createListChartPonto(dataSet);
         ChartPanel painelDoGrafico = new ChartPanel(grafico); //configurações do grafico
-        painelDoGrafico.setPreferredSize(new Dimension(400,400)); //tamanho do grafico
-        
+        painelDoGrafico.setPreferredSize(new Dimension(400, 400)); //tamanho do grafico
+
         return painelDoGrafico;
     }
 

@@ -1,4 +1,3 @@
-
 package perceptron;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 public class Perceptron {
 
     private Equacao eqc;
-    private List <Ponto> listPontos;
+    private List<Ponto> listPontos;
     private double taxaAprendizado;
 
     public Perceptron(Equacao eqc, List<Ponto> listPontos, double taxaAprendizado) {
@@ -43,5 +42,4 @@ public class Perceptron {
         this.taxaAprendizado = taxaAprendizado;
     }
 
-    
 }

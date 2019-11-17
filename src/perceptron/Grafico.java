@@ -29,13 +29,13 @@ public class Grafico extends javax.swing.JFrame {
         List<Ponto> listPointClass2 = retornaPontosDaClasse(2, percepton.getListPontos());
         
         GraficoPonto testePonto = new GraficoPonto();
-        GraficoLinha1 testeLinha1 = new GraficoLinha1();
+        GraficoLinha testeLinha = new GraficoLinha();
         ChartPanel cp = testePonto.criarGrafico(listPointClass1, listPointClass2); 
         this.jpnlPontos.add(cp);
         jpnlPontos.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         
         //Plota as retas
-        this.jpnlRetas.add(testeLinha1.criarGrafico(ManipulaPerceptron.calcularPerceptron(percepton), listPointClass1, listPointClass2));
+        this.jpnlRetas.add(testeLinha.criarGrafico(ManipulaPerceptron.calcularPerceptron(percepton)));
         jpnlRetas.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         pack();
         
@@ -204,13 +204,14 @@ public class Grafico extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jlbW2)
-                            .addComponent(jlbW1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlbW0, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jlbW2)
+                                .addComponent(jlbW1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jlbW0, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jpnlPontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()

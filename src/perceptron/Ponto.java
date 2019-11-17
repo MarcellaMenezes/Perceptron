@@ -1,6 +1,7 @@
 package perceptron;
 
 public class Ponto {
+
     private double x;
     private double y;
     private int classPoint;
@@ -27,6 +28,4 @@ public class Ponto {
         this.classPoint = classPoint;
     }
 
-    
-    
 }

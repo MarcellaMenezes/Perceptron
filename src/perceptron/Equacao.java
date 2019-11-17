@@ -5,6 +5,7 @@ package perceptron;
  * @author marcella menezes
  */
 public class Equacao {
+
     private double w0, w1, w2;
 
     public Equacao(double w0, double w1, double w2) {
@@ -36,5 +37,5 @@ public class Equacao {
     public void setW2(double w2) {
         this.w2 = w2;
     }
-    
+
 }
